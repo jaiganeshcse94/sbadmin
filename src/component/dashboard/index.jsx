@@ -1,41 +1,15 @@
-import React from "react";
+import React,{useContext} from "react";
 import Card from "./card";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { findIndex } from "../../utitlity/arrayindex";
 import { useNavigate } from 'react-router-dom';
-
-function Dashboard({ data, setData }) {
-  let cardData = [
-    {
-      title: "Earnings Monthly",
-      value: "$ 40,000",
-      color: "primary",
-      icon: "calendar",
-      isProgress: false,
-    },
-    {
-      title: "Earnings Annual",
-      value: "$ 215,000",
-      color: "success",
-      icon: "dollar-sign",
-      isProgress: false,
-    },
-    {
-      title: "Task",
-      value: "50",
-      color: "info",
-      icon: "clipboard-list",
-      isProgress: true,
-    },
-    {
-      title: "Pending Requests",
-      value: "18",
-      color: "warning",
-      icon: "comments",
-      isProgress: false,
-    },
-  ];
+import { UserContext } from "../../App";
+import { DashboardContext } from "../../context/DashboardContextComponent";
+function Dashboard() {
+  let {data,setData}=useContext(UserContext);//use the data using object destructuring
+  // console.log(context);
+  let {cardData}=useContext(DashboardContext);
   let navigate = useNavigate();
   const handlerDelete=(id)=>{
     let index=findIndex(data,id);

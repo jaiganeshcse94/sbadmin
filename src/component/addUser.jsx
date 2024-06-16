@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
-function AddUser({data,setData}) {
+import { UserContext } from "../App";
+function AddUser() {
     let[name,setName]=useState('');
     let[email,setEmail]=useState('');
     let[mobile,setMobile]=useState('');
     let[batch,setBatch]=useState('');
     const navigate = useNavigate();
+    let {data,setData}=useContext(UserContext);
     const addData=()=>{
         let id = data.length?data[data.length-1].id+1:1
         let newUser = {

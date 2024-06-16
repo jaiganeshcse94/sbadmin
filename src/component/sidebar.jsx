@@ -34,6 +34,18 @@ function Sidebar() {
                     <span>Add User</span>
             </Link>
             </li>
+            <li className="nav-item">
+            <Link to="/hooks/usereff"  className="nav-link collapsed">
+                <i className="fas fa-fw fa-cog"></i>
+                    <span>Use Ref</span>
+            </Link>
+            </li>
+            <li className="nav-item">
+            <Link to="/hooks/usereduce"  className="nav-link collapsed">
+                <i className="fas fa-fw fa-cog"></i>
+                    <span>Use Reducer</span>
+            </Link>
+            </li>
             {/* <!-- Nav Item - Utilities Collapse Menu --> */}
             {/* <li className="nav-item">
                 <Link to="/view-user" className="nav-link collapsed" >

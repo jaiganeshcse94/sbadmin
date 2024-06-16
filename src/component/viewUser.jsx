@@ -1,16 +1,18 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState,useContext} from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { findIndex } from '../utitlity/arrayindex';
 import { useNavigate,useParams } from 'react-router-dom';
+import { UserContext } from '../App';
 
-function ViewUser({data,setData}) {
+function ViewUser() {
     let [name,setName] = useState("")
     let [email,setEmail] = useState("")
     let [mobile,setMobile] = useState("")
     let [batch,setBatch] = useState("")
     let {id} = useParams()
     let navigate = useNavigate()
+    let {data,setData}=useContext(UserContext);
     //useEffect
     //1. Without dependency array - Triggers during the initial rendering and any state change happens
     // useEffect(()=>{
