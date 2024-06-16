@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer} from "react";
 import Sidebar from "./component/sidebar";
 import Dashboard from "./component/dashboard";
 import AddUser from "./component/addUser";
@@ -12,43 +12,15 @@ export const UserContext=React.createContext()//creating context
 import DashboardContextComponent from "./context/DashboardContextComponent";
 import UseReff from "./component/hooks/useReff";
 import UseReducer from "./component/hooks/useReducer";
+//getting reducer function and initial state from reducer file
+import reducer,{initalValue} from "./utitlity/reducer";
 function App() {
-  let [data,setData]=useState([
-    {
-      id:1,
-      name:"jai",
-      email:"jai@gmail.com",
-      mobile:"9484484321",
-      batch:""
-    },
-    {
-      id:2,
-      name:"raj",
-      email:"raj@gmail.com",
-      mobile:"9488884321",
-      batch:""
-    },
-    {
-      id:3,
-      name:"vijay",
-      email:"vijay@gmail.com",
-      mobile:"9444484321",
-      batch:""
-    },
-    {
-      id:4,
-      name:"ajith",
-      email:"ajith@gmail.com",
-      mobile:"9410484321",
-      batch:""
-    }
-
-  ]);
+ let [data,dispatch]=useReducer(reducer,initalValue)
   return  <>
       {/* <!-- Page Wrapper --> */}
 
       <div id="wrapper">
-      <UserContext.Provider value={{ data, setData }}>
+      <UserContext.Provider value={{ data, dispatch }}>
         <BrowserRouter>
           <Sidebar />
           <Routes>

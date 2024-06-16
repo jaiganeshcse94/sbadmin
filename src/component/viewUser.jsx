@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { findIndex } from '../utitlity/arrayindex';
 import { useNavigate,useParams } from 'react-router-dom';
 import { UserContext } from '../App';
+import { Action } from '../utitlity/actions';
 
 function ViewUser() {
     let [name,setName] = useState("")
@@ -12,7 +13,7 @@ function ViewUser() {
     let [batch,setBatch] = useState("")
     let {id} = useParams()
     let navigate = useNavigate()
-    let {data,setData}=useContext(UserContext);
+    let {data,dispatch}=useContext(UserContext);
     //useEffect
     //1. Without dependency array - Triggers during the initial rendering and any state change happens
     // useEffect(()=>{
@@ -53,9 +54,11 @@ function ViewUser() {
         let index = findIndex(data,Number(id))
         let editedData = {id:data[index].id,name,email,mobile,batch}//forming the object
 
-        let newArray = [...data]//deep copy
-        newArray.splice(index,1,editedData)//replace the old data with edited data
-        setData(newArray)
+        dispatch({type:Action.EDIT_USER,payload:editedData});
+
+        // let newArray = [...data]//deep copy
+        // newArray.splice(index,1,editedData)//replace the old data with edited data
+        // setData(newArray)
 
         navigate('/')
 

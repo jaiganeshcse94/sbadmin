@@ -2,24 +2,15 @@ import React,{useContext} from "react";
 import Card from "./card";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { findIndex } from "../../utitlity/arrayindex";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../../App";
 import { DashboardContext } from "../../context/DashboardContextComponent";
+import { Action } from "../../utitlity/actions";
 function Dashboard() {
-  let {data,setData}=useContext(UserContext);//use the data using object destructuring
+  let {data,dispatch}=useContext(UserContext);//use the data using object destructuring
   // console.log(context);
   let {cardData}=useContext(DashboardContext);
   let navigate = useNavigate();
-  const handlerDelete=(id)=>{
-    let index=findIndex(data,id);
-    console.log(index);
-    if(index!=-1){
-        let newArray=[...data];
-        newArray.splice(index,1);
-        setData(newArray);
-    }
-  }
   return (
     <>
       <div id="content-wrapper" className="d-flex flex-column">
@@ -59,7 +50,7 @@ function Dashboard() {
                       <td>
                         <Button variant="primary" onClick={()=>navigate(`/view-user/${e.id}`)}>Edit</Button>
                         &nbsp;&nbsp;
-                        <Button variant="danger" onClick={()=>handlerDelete(e.id)}>Delete</Button>
+                        <Button variant="danger" onClick={()=>dispatch({type:Action.DELETE_USER,payload:e.id})}>Delete</Button>
                       </td>
                     </tr>;
                   })}
